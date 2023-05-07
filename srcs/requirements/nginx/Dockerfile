@@ -9,6 +9,11 @@ COPY requirements/nginx/conf/nginx.conf /etc/nginx/http.d/nginx.conf
 RUN chmod -R 755 /etc/nginx/http.d/nginx.conf
 
 RUN mkdir -p /etc/nginx/ssl
+
+# Create the key and the certifcate for TSL protocol
+# -x509 refers to the certificate's type
+# -out and -keyout parameters refers to where the certificate will be saved
+# -subj refers to the command response (Country, STate, Locality, Organizati#on name, Organizational Unit name, Common Name (we can use our name))
 RUN openssl req -x509 -nodes\
 	-out /etc/nginx/ssl/ssl_certif.crt \
 	-keyout /etc/nginx/ssl/ssl_key.key \
